@@ -1,0 +1,66 @@
+.about {
+  text-align: center;
+  padding: 4rem 2rem;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.profileImage {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--accent-color);
+}
+
+.textContainer {
+  max-width: 600px;
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 1.5rem;
+  border-radius: 10px;
+  text-align: left;
+}
+
+.textContainer p {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.techTitle {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+}
+
+.techIcons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.techItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.techItem span {
+  font-size: 1rem;
+  font-weight: bold;
+}
