@@ -1,7 +1,34 @@
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
+import emailjs from "@emailjs/browser";
 import styles from "./ContactStyles.module.css";
 
 function Contact() {
+  const formRef = useRef(null);
+  const [status, setStatus] = useState("");
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+        "service_vnyd8v7", // 🔹 Replace with your EmailJS Service ID
+        "template_ru9av17", // 🔹 Replace with your EmailJS Template ID
+        formRef.current,
+        "tW-H-vjJEnNln_Vb0" // 🔹 Replace with your EmailJS Public Key
+      )
+      .then(
+        () => {
+          setStatus("✅ Message Sent Successfully!");
+          formRef.current.reset();
+        },
+        (error) => {
+          console.error("Email sending failed:", error);
+          setStatus("❌ Failed to send message. Try again.");
+        }
+      );
+  };
+
   return (
     <motion.section
       id="contact"
@@ -22,7 +49,8 @@ function Contact() {
       </motion.h1>
 
       <motion.form
-        action=""
+        ref={formRef}
+        onSubmit={sendEmail}
         initial={{ opacity: 0, scale: 0.9 }}
         whileInView={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.8, delay: 0.2 }}
@@ -58,7 +86,7 @@ function Contact() {
             Email
           </label>
           <input
-            type="text"
+            type="email"
             name="email"
             id="email"
             placeholder="Email"
@@ -93,6 +121,8 @@ function Contact() {
           transition={{ duration: 0.6, delay: 0.6 }}
           viewport={{ once: true }}
         />
+
+        {status && <p className={styles.status}>{status}</p>}
       </motion.form>
     </motion.section>
   );
